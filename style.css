@@ -1,0 +1,17 @@
+body {
+  font-family: Arial;
+  margin: 40px;
+  background: #f8f8f8;
+}
+
+header {
+  text-align: center;
+}
+
+h1 {
+  color: #003366;
+}
+
+section {
+  margin-top: 40px;
+}
