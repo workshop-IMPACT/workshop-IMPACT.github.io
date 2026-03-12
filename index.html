@@ -1,41 +1,923 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>IMPACT Workshop @ ACMMM 2026</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMPACT 2026 Workshop</title>
+  <meta name="description" content="IMPACT: Impact-aware Multimodal Persuasive Analysis and Contextual Trust — ACM Multimedia 2026 Workshop" />
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --text: #172033;
+      --muted: #5d6a85;
+      --primary: #183a6d;
+      --primary-2: #295aa6;
+      --border: #dbe4f0;
+      --highlight: #eef4ff;
+      --shadow: 0 10px 30px rgba(15, 35, 70, 0.08);
+      --maxw: 1180px;
+    }
 
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--primary-2);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #112949 0%, #234b86 100%);
+      color: white;
+      padding: 56px 20px 42px;
+    }
+
+    .hero-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.9;
+      margin-bottom: 10px;
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 6px 10px;
+      border-radius: 999px;
+    }
+
+    .hero h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 950px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 980px;
+      font-size: 1.08rem;
+      opacity: 0.96;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .hero-meta span {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 24px 20px 48px;
+    }
+
+    .quick-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 22px;
+      margin-top: -24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .card.pad {
+      padding: 22px;
+    }
+
+    .dates-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.98rem;
+    }
+
+    .dates-table td {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .dates-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .dates-table td:first-child {
+      font-weight: 700;
+      width: 48%;
+      color: var(--primary);
+      padding-right: 12px;
+    }
+
+    .tab-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 28px 0 16px;
+    }
+
+    .tab-button {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--primary);
+      padding: 11px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.96rem;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+
+    .tab-button:hover {
+      background: var(--highlight);
+    }
+
+    .tab-button.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .tab-panel {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+    }
+
+    .tab-panel.active {
+      display: block;
+    }
+
+    .section-title {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: var(--primary);
+      font-size: 1.7rem;
+    }
+
+    .subsection-title {
+      margin-top: 28px;
+      margin-bottom: 10px;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: #24304a;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 8px;
+    }
+
+    .chip {
+      background: var(--highlight);
+      color: var(--primary);
+      border: 1px solid #d5e2fb;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    .person-card,
+    .speaker-card,
+    .mini-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      background: #fff;
+    }
+
+    .person-card h3,
+    .speaker-card h3,
+    .mini-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+      color: var(--primary);
+    }
+
+    .person-card p,
+    .speaker-card p,
+    .mini-card p {
+      margin: 0;
+      color: #2b3650;
+    }
+
+    .speaker-status {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      background: var(--highlight);
+      color: var(--primary);
+      border: 1px solid #d5e2fb;
+    }
+
+    ul {
+      padding-left: 22px;
+    }
+
+    li + li {
+      margin-top: 8px;
+    }
+
+    .schedule-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .schedule-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
+      border: 1px solid var(--border);
+      background: #fff;
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .schedule-time {
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .note-box {
+      margin-top: 18px;
+      background: #f9fbff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary-2);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .footer {
+      max-width: var(--maxw);
+      margin: 34px auto 50px;
+      padding: 0 20px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 11px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--primary);
+      transition: 0.2s ease;
+    }
+
+    .btn.primary {
+      background: var(--primary);
+      color: white;
+    }
+
+    .btn.primary:hover {
+      background: #0f2e59;
+      text-decoration: none;
+    }
+
+    .btn.secondary {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn.secondary:hover {
+      background: var(--highlight);
+      text-decoration: none;
+    }
+
+    .highlight-block {
+      background: linear-gradient(180deg, #f8fbff 0%, #eef4ff 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .quick-grid,
+      .two-col,
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .schedule-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 42px;
+      }
+
+      .tab-panel {
+        padding: 20px;
+      }
+
+      .tab-button {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
 <body>
 
-<header>
-<h1>IMPACT: Impact-aware Multimodal Persuasive Analysis andContextual Trust</h1>
-<p>ACMMM 2026 Workshop</p>
-</header>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">ACM Multimedia 2026 Workshop Proposal</div>
+      <h1>IMPACT: Impact-aware Multimodal Persuasive Analysis and Contextual Trust</h1>
+      <p>
+        A workshop on multimedia-native, persuasion-optimized misinformation, bringing together
+        multimedia forensics, multimodal reasoning, provenance, trust, robustness, and human-centered verification.
+      </p>
+      <div class="hero-meta">
+        <span>Full-Day Workshop</span>
+        <span>ACM Multimedia 2026</span>
+        <span>Hybrid Support if Permitted</span>
+        <span>T-IMPACT Challenge Track</span>
+      </div>
+    </div>
+  </header>
 
-<section>
-<h2>Overview</h2>
-<p>
-IMPACT focuses on understanding how multimodal content
-influences perception and persuasion in misinformation.
-</p>
-</section>
+  <main class="wrap">
+    <section class="quick-grid">
+      <div class="card pad">
+        <h2 class="section-title" style="margin-bottom:10px;">Workshop Overview</h2>
+        <p class="lead">
+          IMPACT targets a rapidly emerging reality: modern misinformation is increasingly
+          <strong>multimedia-native</strong> and <strong>persuasion-optimized</strong>.
+          It is no longer just a forged image or isolated deepfake clip, but an engineered package of
+          visuals, captions, framing, narrative priming, and cross-platform remixing designed to manipulate belief and action.
+        </p>
+        <div class="chips">
+          <span class="chip">Multimodal Manipulation Detection</span>
+          <span class="chip">Cross-modal Contradiction</span>
+          <span class="chip">Authentication & Provenance</span>
+          <span class="chip">Severity-aware Modeling</span>
+          <span class="chip">Explainable Verification</span>
+          <span class="chip">Platform-scale Integrity</span>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="#tabs">Explore Workshop Details</a>
+          <a class="btn secondary" href="mailto:priyanka.singh@uq.edu.au">Contact Organizers</a>
+        </div>
+      </div>
 
-<section>
-<h2>Important Dates</h2>
-<ul>
-<li>Paper submission: TBD</li>
-<li>Notification: TBD</li>
-<li>Camera ready: TBD</li>
-</ul>
-</section>
+      <div class="card pad">
+        <h2 class="section-title" style="margin-bottom:10px;">Important Dates</h2>
+        <table class="dates-table">
+          <tr>
+            <td>Contribution Submission</td>
+            <td>16 July</td>
+          </tr>
+          <tr>
+            <td>Author Notification</td>
+            <td>06 August</td>
+          </tr>
+          <tr>
+            <td>Camera-Ready</td>
+            <td>20 August</td>
+          </tr>
+          <tr>
+            <td>Author Registration</td>
+            <td>20 August</td>
+          </tr>
+        </table>
+        <div class="note-box">
+          Final dates should be aligned with the official ACM MM 2026 workshop schedule once confirmed.
+        </div>
+      </div>
+    </section>
 
-<section>
-<h2>Organizers</h2>
-<p>
-Priyanka Singh (UQ)<br>
-Gagandeep Singh (UQ)<br>
-</p>
-</section>
+    <section id="tabs">
+      <div class="tab-bar">
+        <button class="tab-button active" data-tab="home">Home</button>
+        <button class="tab-button" data-tab="organizers">Organizers</button>
+        <button class="tab-button" data-tab="cfp">Call for Papers</button>
+        <button class="tab-button" data-tab="committee">Committee</button>
+        <button class="tab-button" data-tab="schedule">Schedule</button>
+        <button class="tab-button" data-tab="speakers">Speakers</button>
+        <button class="tab-button" data-tab="challenge">T-IMPACT Challenge</button>
+        <button class="tab-button" data-tab="logistics">Logistics</button>
+      </div>
+
+      <section class="tab-panel active" id="home">
+        <h2 class="section-title">Home</h2>
+        <p>
+          IMPACT is scoped around a central concern: as generative modeling improves across image,
+          video, audio, and text, the main threat is no longer only whether media is fake, but
+          whether it is <strong>strategically persuasive</strong>, <strong>contextually misleading</strong>,
+          and capable of causing real-world harm at speed and scale.
+        </p>
+        <p>
+          In high-stakes settings such as elections, public health, emergencies, conflict reporting,
+          and financial narratives, manipulated media can distort decision-making even when the
+          manipulation is subtle. This pushes the field toward integrated integrity systems that combine
+          detection, localization, provenance, contextual reasoning, robustness, and explanations that humans can trust.
+        </p>
+        <p>
+          IMPACT brings together researchers in multimedia forensics, multimodal learning,
+          trustworthy AI, social and behavioral computing, authentication and provenance,
+          and human-centered verification systems. The workshop is designed not just around
+          benchmark accuracy, but around <strong>robustness, auditability, severity awareness,
+          and deployment value</strong>.
+        </p>
+
+        <div class="highlight-block">
+          <h3 class="subsection-title" style="margin-top:0;">Why this workshop matters</h3>
+          <ul>
+            <li>Modern misinformation is increasingly multimodal and optimized for persuasion rather than raw realism alone.</li>
+            <li>Artifact-only defenses have a shrinking reliability horizon as generation quality improves.</li>
+            <li>Binary real/fake labels are too coarse for practical integrity decisions.</li>
+            <li>Stakeholders need systems that estimate misleading impact, localize evidence, and provide accountable explanations.</li>
+          </ul>
+        </div>
+
+        <h3 class="subsection-title">Scope and Topics</h3>
+        <div class="two-col">
+          <div class="mini-card">
+            <h3>Core Technical Areas</h3>
+            <ul>
+              <li>Multimodal manipulation detection and localization across image, video, audio, and text</li>
+              <li>Cross-modal semantic inconsistency and narrative distortion</li>
+              <li>Authentication, watermarking, hashing, signatures, and provenance infrastructure</li>
+              <li>Severity- and impact-aware modeling beyond binary labels</li>
+            </ul>
+          </div>
+          <div class="mini-card">
+            <h3>System and Deployment Areas</h3>
+            <ul>
+              <li>Robustness under adversarial pressure and distribution shift</li>
+              <li>Explainable and human-centered verification systems</li>
+              <li>Platform-scale monitoring, moderation support, and triage</li>
+              <li>Policy, governance, ethics, and responsible deployment constraints</li>
+            </ul>
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Rationale</h3>
+        <p>
+          ACM Multimedia is the right venue for IMPACT because persuasion-oriented misinformation is
+          fundamentally a multimedia problem. It requires cross-modal fusion, temporal reasoning,
+          multimodal retrieval, robust representations, authenticity infrastructure, and interactive systems
+          for human decision support. IMPACT creates a dedicated forum where these threads are evaluated together.
+        </p>
+      </section>
+
+      <section class="tab-panel" id="organizers">
+        <h2 class="section-title">Organizers</h2>
+        <p class="muted">
+          The organizing team spans multimedia forensics and authentication, multimodal learning and reasoning,
+          privacy and trustworthy systems, and large-scale social and behavioral computing.
+        </p>
+
+        <div class="two-col">
+          <div class="person-card">
+            <h3>Priyanka Singh</h3>
+            <p><strong>The University of Queensland, Australia</strong></p>
+            <p>Email: <a href="mailto:priyanka.singh@uq.edu.au">priyanka.singh@uq.edu.au</a></p>
+            <p style="margin-top:10px;">
+              Senior Lecturer in Cybersecurity at UQ. Her research spans multimedia forensics,
+              privacy-preserving provenance, perceptual hashing, and accountable verification systems.
+            </p>
+          </div>
+
+          <div class="person-card">
+            <h3>Xue Li</h3>
+            <p><strong>The University of Queensland, Australia</strong></p>
+            <p>Email: <a href="mailto:xueli@uq.edu.au">xueli@uq.edu.au</a></p>
+            <p style="margin-top:10px;">
+              Professor at UQ with expertise in data mining, social computing, and large-scale behavioral pattern discovery.
+            </p>
+          </div>
+
+          <div class="person-card">
+            <h3>Pradeep K. Atrey</h3>
+            <p><strong>University at Albany, SUNY, USA</strong></p>
+            <p>Email: <a href="mailto:patrey@albany.edu">patrey@albany.edu</a></p>
+            <p style="margin-top:10px;">
+              Associate Professor and Co-Director of ALPS. His research includes multimedia authentication,
+              provenance, privacy-aware analytics, and secure multimedia intelligence.
+            </p>
+          </div>
+
+          <div class="person-card">
+            <h3>Gagandeep Singh</h3>
+            <p><strong>The University of Queensland, Australia</strong></p>
+            <p>Email: <a href="mailto:gagandeep.singh2@student.uq.edu.au">gagandeep.singh2@student.uq.edu.au</a></p>
+            <p style="margin-top:10px;">
+              PhD candidate researcher working on multimodal misinformation detection, severity-aware evaluation,
+              and dataset construction for persuasion-oriented manipulation analysis.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="cfp">
+        <h2 class="section-title">Call for Papers</h2>
+        <p>
+          The IMPACT workshop solicits high-quality submissions advancing multimedia integrity under
+          persuasion-oriented manipulation and contextual distortion.
+        </p>
+
+        <h3 class="subsection-title">We invite submissions in the following categories</h3>
+        <ul>
+          <li><strong>Full Papers</strong></li>
+          <li><strong>Short Papers</strong></li>
+          <li><strong>Posters</strong></li>
+          <li><strong>System / Demo Submissions</strong></li>
+        </ul>
+
+        <h3 class="subsection-title">Topics of Interest</h3>
+        <ul>
+          <li>Multimodal manipulation detection and localization</li>
+          <li>Cross-modal contradiction and narrative distortion</li>
+          <li>Authentication, watermarking, and provenance</li>
+          <li>Robustness to adversarial pressure and distribution shift</li>
+          <li>Severity- and impact-aware modeling</li>
+          <li>Human-in-the-loop verification and interfaces</li>
+          <li>Platform-scale moderation support</li>
+          <li>Policy, governance, and ethical constraints</li>
+        </ul>
+
+        <h3 class="subsection-title">Submission and Review</h3>
+        <p>
+          All submissions will be peer-reviewed by the program committee for originality, technical quality,
+          clarity, relevance, and reproducibility. We encourage code, model cards, and evaluation artifacts where appropriate.
+        </p>
+        <p>
+          Accepted contributions will be presented as oral talks or posters/demos depending on program constraints,
+          with an explicit focus on constructive discussion, failure-mode analysis, and cross-community exchange.
+        </p>
+        <p>
+          Submissions will follow the ACM Multimedia workshop format. <strong>Full papers</strong> may be up to
+          <strong>8 pages</strong> and <strong>short papers</strong> up to <strong>4 pages</strong>, excluding references.
+          Submissions are intended to be <strong>single-blind</strong> and reviewed by at least two program committee members.
+        </p>
+
+        <div class="highlight-block">
+          <h3 class="subsection-title" style="margin-top:0;">Important Dates</h3>
+          <ul>
+            <li><strong>Contribution Submission:</strong> 16 July</li>
+            <li><strong>Author Notification:</strong> 06 August</li>
+            <li><strong>Camera-Ready:</strong> 20 August</li>
+            <li><strong>Author Registration:</strong> 20 August</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="committee">
+        <h2 class="section-title">Committee</h2>
+
+        <h3 class="subsection-title">Organizing Committee</h3>
+        <p>
+          Priyanka Singh (UQ), Xue Li (UQ), Pradeep K. Atrey (SUNY Albany), Gagandeep Singh (UQ)
+        </p>
+
+        <h3 class="subsection-title">Program Committee</h3>
+        <p>
+          The Program Committee will include experts across multimedia forensics, multimodal learning,
+          trustworthy AI, and platform integrity. A tentative initial list includes:
+        </p>
+        <ul>
+          <li>Guanfeng Liu — Macquarie University</li>
+          <li>Jia Wu — Macquarie University</li>
+          <li>Yanjun Zhang — University of Technology Sydney</li>
+          <li>Sharif Abuadbba — CSIRO Data61</li>
+          <li>Ling Chen — National Yang Ming Chiao Tung University</li>
+          <li>Lin Yue — University of Adelaide</li>
+          <li>Manoranjan Mohanty — Carnegie Mellon University Qatar</li>
+          <li>Rajat Subhra Chakraborty — IIT Kharagpur</li>
+          <li>Vivek K. Singh — Rutgers University</li>
+        </ul>
+
+        <p>
+          Confirmed members and additional appointments, including industry integrity researchers,
+          will be finalized and announced on the workshop website before the submission deadline.
+        </p>
+
+        <h3 class="subsection-title">Steering Committee</h3>
+        <p>
+          If IMPACT continues in subsequent years, a small steering committee will be established from
+          recurring organizers and senior community members to ensure continuity, benchmark stewardship,
+          and consistent review standards.
+        </p>
+      </section>
+
+      <section class="tab-panel" id="schedule">
+        <h2 class="section-title">Tentative Schedule</h2>
+        <p>
+          We propose IMPACT as a <strong>full-day workshop</strong> with hybrid support where permitted by ACM MM infrastructure.
+          Based on adjacent ACM MM workshop participation patterns, we target <strong>50–100 attendees</strong> and anticipate
+          <strong>12–18 accepted contributions</strong> across paper and demo categories.
+        </p>
+
+        <div class="schedule-list">
+          <div class="schedule-item">
+            <div class="schedule-time">Opening and framing talk</div>
+            <div>15 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Keynote 1</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Oral paper session 1</div>
+            <div>40 min; 4–5 short talks</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Keynote 2</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Poster / Demo + Networking</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Keynote 3</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Dataset Challenge Discussion</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Keynote 4</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Panel / Moderated Discussion</div>
+            <div>40 min</div>
+          </div>
+          <div class="schedule-item">
+            <div class="schedule-time">Closing Remarks</div>
+            <div>5–10 min</div>
+          </div>
+        </div>
+
+        <div class="note-box">
+          If submission volume is high, more accepted papers will be shifted to poster format to broaden participation and preserve discussion time.
+        </div>
+      </section>
+
+      <section class="tab-panel" id="speakers">
+        <h2 class="section-title">Tentative Keynote Speakers</h2>
+        <p class="muted">
+          The proposed speakers bring complementary perspectives across multimedia forensics,
+          provenance security, trustworthy systems, and persuasive misinformation analysis.
+        </p>
+
+        <div class="two-col">
+          <div class="speaker-card">
+            <h3>Siwei Lyu</h3>
+            <p><strong>University at Albany, SUNY</strong></p>
+            <p><a href="https://cse.buffalo.edu/~siweilyu/" target="_blank">Homepage</a></p>
+            <p style="margin-top:10px;">
+              A globally recognized leader in multimedia forensics, authenticity, and deepfake detection.
+              His work aligns strongly with persuasion-oriented misinformation, provenance, and accountability in visual evidence.
+            </p>
+            <span class="speaker-status">Tentative · Virtual if required</span>
+          </div>
+
+          <div class="speaker-card">
+            <h3>Mohan S. Kankanhalli</h3>
+            <p><strong>National University of Singapore</strong></p>
+            <p><a href="https://www.comp.nus.edu.sg/~mohan/" target="_blank">Homepage</a></p>
+            <p style="margin-top:10px;">
+              A pioneer in multimedia computing, computer vision, and trustworthy AI, with strong contributions to content authentication,
+              multimedia security, and privacy-preserving analytics.
+            </p>
+            <span class="speaker-status">Confirmed · Virtual if required</span>
+          </div>
+
+          <div class="speaker-card">
+            <h3>Ryan Ko</h3>
+            <p><strong>The University of Queensland</strong></p>
+            <p><a href="https://about.uq.edu.au/experts/23784" target="_blank">Homepage</a></p>
+            <p style="margin-top:10px;">
+              Chair Professor of Cyber Security and Director of Research at UQ EECS.
+              His expertise supports the workshop’s focus on secure and accountable infrastructures for misinformation response.
+            </p>
+            <span class="speaker-status">Confirmed · Virtual if required</span>
+          </div>
+
+          <div class="speaker-card">
+            <h3>Helen Huang</h3>
+            <p><strong>The University of Queensland</strong></p>
+            <p><a href="https://about.uq.edu.au/experts/1230" target="_blank">Homepage</a></p>
+            <p style="margin-top:10px;">
+              Professor at UQ working on large-scale data mining, trustworthy machine learning,
+              robustness, fairness, and reliable AI deployment.
+            </p>
+            <span class="speaker-status">Confirmed · Virtual if required</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="challenge">
+        <h2 class="section-title">T-IMPACT Challenge</h2>
+        <p>
+          A central objective of IMPACT is to catalyze reproducible progress on
+          <strong>impact-aware integrity</strong>, where the goal is not only to decide whether content is manipulated,
+          but to quantify <strong>how it misleads</strong> and <strong>how harmful it could be</strong> if consumed and shared.
+        </p>
+
+        <h3 class="subsection-title">Challenge Motivation</h3>
+        <p>
+          Existing benchmarks often reward binary detection while failing to capture realistic manipulations
+          involving subtle visual edits, narrative reframing, contextual distortion, and multimodal persuasion.
+          The T-IMPACT challenge is designed to reward robustness, calibrated confidence, and explainable outputs,
+          not just narrowly defined benchmark accuracy.
+        </p>
+
+        <h3 class="subsection-title">Dataset Overview</h3>
+        <p>
+          T-IMPACT consists of paired authentic and manipulated multimedia items reflecting real misinformation
+          strategies across political events, public health, disasters, and conflict reporting. Samples are structured
+          around image-text pairs, with optional metadata depending on release tier. Manipulations include:
+        </p>
+        <ul>
+          <li>Object insertion, removal, compositing, inpainting, and localized attribute changes</li>
+          <li>Caption swaps, narrative reframing, temporal or geographic misattribution</li>
+          <li>Mixed cases where both modalities are altered</li>
+        </ul>
+
+        <h3 class="subsection-title">Annotations and Supervision</h3>
+        <ul>
+          <li>Manipulation type labels and descriptors of narrative distortion</li>
+          <li>Severity / impact supervision as graded scores or ordinal categories</li>
+          <li>Localization signals such as manipulated regions and token-level text highlights</li>
+        </ul>
+
+        <h3 class="subsection-title">Tasks and Tracks</h3>
+        <ul>
+          <li><strong>Task 1:</strong> Authenticity classification</li>
+          <li><strong>Task 2:</strong> Severity / impact estimation</li>
+          <li><strong>Task 3:</strong> Evidence localization (optional but strongly encouraged)</li>
+        </ul>
+
+        <h3 class="subsection-title">Evaluation Protocol</h3>
+        <ul>
+          <li>Classification: Accuracy, Precision/Recall, F1, ROC-AUC</li>
+          <li>Severity: MAE, RMSE, Spearman correlation, ordinal consistency</li>
+          <li>Localization: IoU-based metrics and token-level F1 where applicable</li>
+          <li>Stratified results by manipulation type and domain</li>
+          <li>Robustness reporting under shift conditions</li>
+        </ul>
+
+        <h3 class="subsection-title">Leaderboard and Infrastructure</h3>
+        <p>
+          A public leaderboard will rank Task 1 and Task 2. Task 3 will be supported as an explainability track
+          and highlighted qualitatively. The challenge infrastructure is planned for a public evaluation platform
+          such as <strong>CodaLab</strong> or <strong>EvalAI</strong>.
+        </p>
+
+        <h3 class="subsection-title">Release, Governance, and Ethics</h3>
+        <p>
+          T-IMPACT will be released with responsible-use terms to support detection and verification research
+          without facilitating misuse. Documentation will describe construction procedures, annotation pipelines,
+          limitations, privacy considerations, and fairness considerations across regions and languages.
+        </p>
+      </section>
+
+      <section class="tab-panel" id="logistics">
+        <h2 class="section-title">Workshop Logistics</h2>
+
+        <h3 class="subsection-title">Workshop History</h3>
+        <p>
+          IMPACT is proposed as a new ACM MM workshop. The organizers have prior experience delivering
+          integrity-focused community programming and coordinating interdisciplinary workshop activities,
+          including committee management, invited speaker coordination, and benchmark-driven engagement.
+        </p>
+
+        <h3 class="subsection-title">Format</h3>
+        <p>
+          The workshop is planned as a full-day event with oral sessions, keynote talks, a poster/demo block,
+          and structured discussion. If physical or infrastructure constraints apply, a hybrid-friendly format will be used where permitted.
+        </p>
+
+        <h3 class="subsection-title">Expected Attendance</h3>
+        <p>
+          Based on adjacent ACM MM workshop participation patterns, the workshop targets
+          <strong>50–100 attendees</strong> and expects approximately <strong>12–18 accepted contributions</strong>.
+        </p>
+
+        <h3 class="subsection-title">Special Requirements</h3>
+        <ul>
+          <li>Standard AV infrastructure including projector and microphones</li>
+          <li>Poster boards or allocated demo space for approximately 15–25 posters/demos</li>
+          <li>Power access for laptops during demo sessions</li>
+          <li>Stable Wi-Fi for light web-based demonstrations</li>
+          <li>If poster boards are constrained, support for digital poster rotation</li>
+        </ul>
+
+        <div class="highlight-block">
+          <h3 class="subsection-title" style="margin-top:0;">Contact</h3>
+          <p>
+            For workshop-related queries, please contact:<br />
+            <strong>Priyanka Singh</strong> —
+            <a href="mailto:priyanka.singh@uq.edu.au">priyanka.singh@uq.edu.au</a>
+          </p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © 2026 IMPACT Workshop. Website content based on the official workshop proposal draft.
+  </footer>
+
+  <script>
+    const buttons = document.querySelectorAll('.tab-button');
+    const panels = document.querySelectorAll('.tab-panel');
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const target = button.getAttribute('data-tab');
+
+        buttons.forEach(btn => btn.classList.remove('active'));
+        panels.forEach(panel => panel.classList.remove('active'));
+
+        button.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
